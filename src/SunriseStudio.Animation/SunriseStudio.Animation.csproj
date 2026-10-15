@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="SunriseStudio.Animation.Tests" />
+    <ProjectReference Include="../SunriseStudio.Packages/SunriseStudio.Packages.csproj" />
+  </ItemGroup>
+</Project>

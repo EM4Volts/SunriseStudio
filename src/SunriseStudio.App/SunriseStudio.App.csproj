@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>Sunrise Studio</AssemblyName>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>../SunriseStudio.Editor/Assets/Sunrise.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../SunriseStudio.Editor/SunriseStudio.Editor.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Frame code reaches optimized code a few frames after a map load instead of a few dozen. -->
+    <RuntimeHostConfigurationOption Include="System.Runtime.TieredCompilation.CallCountingDelayMs" Value="0" />
+    <RuntimeHostConfigurationOption Include="System.Runtime.TieredCompilation.CallCountThreshold" Value="5" />
+  </ItemGroup>
+</Project>

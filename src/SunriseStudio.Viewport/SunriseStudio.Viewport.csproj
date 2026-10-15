@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="SunriseStudio.Viewport.Tests" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../SunriseStudio.Packages/SunriseStudio.Packages.csproj" />
+    <ProjectReference Include="../SunriseStudio.Scene/SunriseStudio.Scene.csproj" />
+    <ProjectReference Include="../SunriseStudio.Animation/SunriseStudio.Animation.csproj" />
+    <ProjectReference Include="../SunriseStudio.Rendering/SunriseStudio.Rendering.csproj" />
+  </ItemGroup>
+</Project>

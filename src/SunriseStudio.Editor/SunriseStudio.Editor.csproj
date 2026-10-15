@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets/Sunrise.png" LogicalName="SunriseStudio.Logo" />
+    <EmbeddedResource Include="Assets/Sunrise.ico" LogicalName="SunriseStudio.Icon" />
+    <EmbeddedResource Include="../../THIRD_PARTY.md" LogicalName="SunriseStudio.Notices.Studio" />
+    <EmbeddedResource Include="../../licenses/dotnet-runtime.txt" LogicalName="SunriseStudio.Notices.DotNet" />
+    <EmbeddedResource Include="../../licenses/community-toolkit.txt" LogicalName="SunriseStudio.Notices.Toolkit" />
+    <ProjectReference Include="../SunriseStudio.Packages/SunriseStudio.Packages.csproj" />
+    <ProjectReference Include="../SunriseStudio.Projects/SunriseStudio.Projects.csproj" />
+    <ProjectReference Include="../SunriseStudio.Formats/SunriseStudio.Formats.csproj" />
+    <ProjectReference Include="../SunriseStudio.Authoring/SunriseStudio.Authoring.csproj" />
+    <ProjectReference Include="../SunriseStudio.Interchange/SunriseStudio.Interchange.csproj" />
+    <ProjectReference Include="../SunriseStudio.Missions/SunriseStudio.Missions.csproj" />
+    <ProjectReference Include="../SunriseStudio.Live/SunriseStudio.Live.csproj" />
+    <ProjectReference Include="../SunriseStudio.Audio/SunriseStudio.Audio.csproj" />
+    <ProjectReference Include="../SunriseStudio.Viewport/SunriseStudio.Viewport.csproj" />
+  </ItemGroup>
+</Project>

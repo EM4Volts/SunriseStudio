@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../SunriseStudio.Packages/SunriseStudio.Packages.csproj" />
+    <ProjectReference Include="../SunriseStudio.Scene/SunriseStudio.Scene.csproj" />
+    <ProjectReference Include="../SunriseStudio.Animation/SunriseStudio.Animation.csproj" />
+  </ItemGroup>
+</Project>

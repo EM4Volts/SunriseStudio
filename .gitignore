@@ -1,0 +1,24 @@
+# Build output. The root obj/ also holds the publish build.
+bin/
+obj/
+/publish/
+
+# The .NET home and package cache the scripts keep here, and local tool sources.
+/.dotnet/
+/.nuget/
+/.tools/
+
+# Editor settings.
+.vs/
+.idea/
+.vscode/
+*.user
+
+# Python caches from the Blender check scripts.
+__pycache__/
+*.py[cod]
+
+# Local captures, logs and scratch.
+/captures/
+/logs/
+/.local/

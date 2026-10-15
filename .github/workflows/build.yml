@@ -1,0 +1,45 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      # Directory.Build.props restores packages into .nuget/packages inside the repository.
+      - uses: actions/cache@v4
+        with:
+          path: .nuget/packages
+          key: nuget-${{ runner.os }}-${{ hashFiles('**/*.csproj', 'Directory.Build.props') }}
+          restore-keys: nuget-${{ runner.os }}-
+
+      # The solution build also compiles every check program in it.
+      - name: Build solution
+        shell: powershell
+        run: .\build.ps1
+
+      - name: Publish executable
+        shell: powershell
+        run: .\publish.ps1
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Sunrise-Studio
+          path: publish/Sunrise Studio.exe
+          if-no-files-found: error

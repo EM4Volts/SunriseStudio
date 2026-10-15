@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="SunriseStudio.Collision.Tests" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../SunriseStudio.Projects/SunriseStudio.Projects.csproj" />
+    <ProjectReference Include="../SunriseStudio.Formats/SunriseStudio.Formats.csproj" />
+    <ProjectReference Include="../SunriseStudio.Packages/SunriseStudio.Packages.csproj" />
+  </ItemGroup>
+</Project>

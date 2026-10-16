@@ -125,8 +125,8 @@ public sealed partial class StudioForm
         }
         if (ImGui.BeginMenu("Help"))
         {
-            if (ImGui.MenuItem("Third-party notices")) noticesDialog = true;
-            if (ImGui.IsItemHovered()) ImGui.SetTooltip("Licenses of the libraries and code Studio includes");
+            if (ImGui.MenuItem("Licenses")) noticesDialog = true;
+            if (ImGui.IsItemHovered()) ImGui.SetTooltip("Studio's license (GPL 3.0) and the licenses of what it includes");
             ImGui.EndMenu();
         }
         chrome.DrawButtons(ImGui.GetFrameHeight());
@@ -236,7 +236,7 @@ public sealed partial class StudioForm
         if (cacheDialog) { ImGui.OpenPopup("Disk cache"); cacheDialog = false; cacheStats = null; }
         if (modDialog) { ImGui.OpenPopup("Mod details"); modDialog = false; }
         if (shortcutsDialog) { ImGui.OpenPopup("Shortcuts"); shortcutsDialog = false; }
-        if (noticesDialog) { ImGui.OpenPopup("Third-party notices"); noticesDialog = false; }
+        if (noticesDialog) { ImGui.OpenPopup("Licenses"); noticesDialog = false; }
         DrawLocationDialog(); DrawProjectDialog(); DrawAddDialog(); DrawCacheDialog(); DrawBundleDialogs(); DrawModDialog();
         DrawShortcutsDialog(); DrawNoticesDialog();
         DrawCreation();

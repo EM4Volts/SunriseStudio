@@ -6,7 +6,7 @@ using SunriseStudio.Rendering;
 
 internal static class NoticesUiChecks
 {
-    /** Opens Help > Third-party notices and checks every embedded notice parsed and drew. */
+    /** Opens Help > Licenses and checks Studio's license and every embedded notice parsed and drew. */
     public static void Run(string root, string? capture = null)
     {
         string install = Path.Combine(root, "notices-install");
@@ -18,7 +18,7 @@ internal static class NoticesUiChecks
         capture ??= Path.Combine(root, "notices.png");
         Exception? failure = null;
         int phase = 0, frames = 0, tabs = 0, tables = 0;
-        string studio = "", dotnet = "", toolkit = "";
+        string license = "", studio = "", dotnet = "", toolkit = "";
         var thread = new Thread(() =>
         {
             try
@@ -40,8 +40,8 @@ internal static class NoticesUiChecks
                             static string Content(object block) => (string)Read(block, "Text")! + string.Concat(
                                 ((string[][]?)Read(block, "Rows") ?? []).SelectMany(row => row).Select(cell => "\n" + cell));
                             string Text(int tab) => string.Join('\n', Blocks(tab).Select(Content));
-                            studio = Text(0); dotnet = Text(1); toolkit = Text(2);
-                            tables = Blocks(0).Count(block => Read(block, "Rows") is not null);
+                            license = Text(0); studio = Text(1); dotnet = Text(2); toolkit = Text(3);
+                            tables = Blocks(1).Count(block => Read(block, "Rows") is not null);
                             Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(capture))!);
                             ((Dx11Renderer)typeof(StudioForm).GetField("renderer", access)!.GetValue(form)!).CapturePng(capture);
                             phase = 2; form.Close();
@@ -57,7 +57,9 @@ internal static class NoticesUiChecks
         thread.SetApartmentState(ApartmentState.STA); thread.Start(); thread.Join();
         if (failure is not null) throw new InvalidOperationException("Notices dialog failed.", failure);
         if (phase != 2) throw new InvalidDataException("Notices dialog was not drawn.");
-        if (tabs != 3 || tables < 2) throw new InvalidDataException($"Notices parsed into {tabs} tabs and {tables} tables.");
+        if (tabs != 4 || tables < 2) throw new InvalidDataException($"Notices parsed into {tabs} tabs and {tables} tables.");
+        if (!license.Contains("GNU GENERAL PUBLIC LICENSE") || !license.Contains("Version 3, 29 June 2007"))
+            throw new InvalidDataException("Studio's GPL 3.0 license text is missing.");
         foreach (string expected in new[] { "Omar Cornut", "Amer Koleci", "Xiph.org Foundation", "vgmstream" })
             if (!studio.Contains(expected)) throw new InvalidDataException($"Studio notices miss {expected}.");
         if (!dotnet.Contains(".NET") || !toolkit.Contains("PedroLamas"))

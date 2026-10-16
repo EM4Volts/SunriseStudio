@@ -8,20 +8,21 @@ public sealed partial class StudioForm
 {
     private static readonly (string Title, string Resource, bool Markdown)[] NoticeTabs =
     [
-        ("Studio", "SunriseStudio.Notices.Studio", true),
+        ("Sunrise Studio", "SunriseStudio.Notices.License", false),
+        ("Third-party", "SunriseStudio.Notices.Studio", true),
         (".NET runtime", "SunriseStudio.Notices.DotNet", false),
         ("Community Toolkit", "SunriseStudio.Notices.Toolkit", false)
     ];
     private bool noticesDialog;
     private NoticeBlock[][]? notices;
 
-    /** The license notices ship inside the executable, so a release is the one file. */
+    /** Studio's license and the third-party notices ship inside the executable, so a release is the one file. */
     private void DrawNoticesDialog()
     {
         ImGui.SetNextWindowPos(new(ClientSize.Width / 2f, ClientSize.Height / 2f), ImGuiCond.Appearing, new(.5f));
         ImGui.SetNextWindowSize(new(Math.Min(860 * scale, ClientSize.Width - 40), Math.Min(640 * scale, ClientSize.Height - 40)),
             ImGuiCond.Appearing);
-        if (!ImGui.BeginPopupModal("Third-party notices", ImGuiWindowFlags.NoSavedSettings)) return;
+        if (!ImGui.BeginPopupModal("Licenses", ImGuiWindowFlags.NoSavedSettings)) return;
         notices ??= NoticeTabs.Select(tab => NoticeBlock.Parse(ReadNotice(tab.Resource), tab.Markdown))
             .ToArray();
         if (ImGui.BeginTabBar("notice-tabs"))

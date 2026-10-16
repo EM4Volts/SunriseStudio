@@ -18,9 +18,12 @@ internal sealed class PackageKeys : IDisposable
     internal static string ResolveSource(string gameRoot, string? explicitSource)
     {
         if (!string.IsNullOrWhiteSpace(explicitSource)) return Path.GetFullPath(explicitSource);
-        string export = Path.Combine(gameRoot, "bin", "x64", "Sunrise", "exports", "package_keys.bin");
+        string export = ExportPath(gameRoot);
         return Path.GetFullPath(File.Exists(export) ? export : Path.Combine(gameRoot, "destiny2.exe"));
     }
+
+    private static string ExportPath(string gameRoot) =>
+        Path.Combine(gameRoot, "bin", "x64", "Sunrise", "exports", "package_keys.bin");
 
     /** Exported keys and unpacked executables both belong to the installed build. */
     internal static PackageKeys Load(string gameRoot, string? explicitSource)
@@ -49,6 +52,10 @@ internal sealed class PackageKeys : IDisposable
         catch (Exception error) when (error is InvalidDataException or IOException
             or UnauthorizedAccessException or OverflowException)
         {
+            // Without a key export, the packed executable never yields keys, so name the fix, not the signature miss.
+            if (string.IsNullOrWhiteSpace(explicitSource) && !File.Exists(ExportPath(gameRoot)))
+                throw new InvalidDataException("No decryption keys were found. Sunrise has not exported its package keys: "
+                    + "set client.dump_package_keys to true, start the game with Sunrise once, then open the installation again.", error);
             throw new InvalidDataException($"Cannot read package keys from {Path.GetFileName(source)}: {error.Message} "
                 + "Set client.dump_package_keys to true and run Sunrise once.", error);
         }

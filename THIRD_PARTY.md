@@ -1,7 +1,7 @@
 # Third-party notices
 
 `Sunrise Studio.exe` contains the libraries below and the .NET runtime. Its audio decoder also
-holds code ported from four projects. Studio shows this file under **Help > Third-party notices**.
+holds code ported from four projects. Studio shows this file under **Help > Licenses**.
 Each license text is copied from the project's own license file.
 
 ## Libraries

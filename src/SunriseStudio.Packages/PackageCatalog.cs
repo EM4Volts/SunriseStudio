@@ -234,6 +234,16 @@ public sealed partial class PackageCatalog : IDisposable
     }
 
     /** Baseline checks must reread payloads; changed package metadata needs a newly opened catalog. */
+    /** Loads the package keys now, so a missing key source fails when the installation opens. */
+    public void EnsureKeys()
+    {
+        lock (readLock)
+        {
+            ObjectDisposedException.ThrowIf(disposed, this);
+            keys ??= PackageKeys.Load(GameRoot, keySourceExecutable);
+        }
+    }
+
     public void InvalidateReadCache()
     {
         lock (readLock)

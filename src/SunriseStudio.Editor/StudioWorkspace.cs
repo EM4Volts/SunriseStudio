@@ -121,6 +121,7 @@ public sealed partial class StudioWorkspace : IDisposable
             var catalog = PackageCatalog.Open(root, string.IsNullOrWhiteSpace(keys) ? null : keys, CacheOptions);
             try
             {
+                catalog.EnsureKeys();
                 var names = StudioNameIndex.Create(catalog);
                 LoadNames(names);
                 ReportProgress("Preparing object edits");

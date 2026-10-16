@@ -155,6 +155,13 @@ These projects were consulted as references. No source was copied from any of th
 
 > Want to be added to or removed from the credits? Let me know.
 
+## License
+
+Sunrise Studio is licensed under GPL-3.0-or-later. The full text is in [LICENSE](LICENSE), and
+Studio shows it under **Help > Licenses**. Third-party code and libraries keep their own licenses;
+[THIRD_PARTY.md](THIRD_PARTY.md) lists them. The Sunrise logo artwork is by Solus and is not covered
+by the GPL.
+
 ## AI Disclaimer
 
 AI was used in the creation of this project. If you are not comfortable with the use of AI in

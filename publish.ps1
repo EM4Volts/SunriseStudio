@@ -13,7 +13,7 @@ $buildOutput = "$PSScriptRoot/obj/publish/"
     -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true `
     -p:DebugType=embedded -p:SatelliteResourceLanguages=en
 if ($LASTEXITCODE -ne 0) { throw 'Studio publish failed.' }
-# The license notices are embedded; Help > Third-party notices shows them.
+# The licenses are embedded; Help > Licenses shows them.
 $stale = Join-Path $Output 'THIRD_PARTY.md'
 if (Test-Path $stale) { Remove-Item $stale }
 Write-Host "Published to $Output"
